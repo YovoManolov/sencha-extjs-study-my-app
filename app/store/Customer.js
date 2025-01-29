@@ -13,7 +13,7 @@ Ext.define("MyApp.store.Customer", {
         gender: "Male",
         age: 45,
         customerProduct: "Business Plan",
-        customerSubcription: "Yearly",
+        customerSubcription: "SubscrName1",
         emailAndContactNumber: "emailAndContactNumber1",
       },
       {
@@ -22,7 +22,7 @@ Ext.define("MyApp.store.Customer", {
         gender: "Female",
         age: 30,
         customerProduct: "Premium Plan",
-        customerSubcription: "Monthly",
+        customerSubcription: "SubscrName1",
         emailAndContactNumber: "emailAndContactNumber2",
       },
       {
@@ -31,7 +31,7 @@ Ext.define("MyApp.store.Customer", {
         gender: "Male",
         age: 35,
         customerProduct: "Family Plan",
-        customerSubcription: "Quarterly",
+        customerSubcription: "SubscrName3",
         emailAndContactNumber: "emailAndContactNumber2",
       },
       {
@@ -40,7 +40,7 @@ Ext.define("MyApp.store.Customer", {
         gender: "Male",
         age: 40,
         customerProduct: "Business Plan",
-        customerSubcription: "Yearly",
+        customerSubcription: "SubscrName2",
         emailAndContactNumber: "emailAndContactNumber2",
       },
     ],
