@@ -9,6 +9,7 @@ Ext.define("MyApp.view.main.Main", {
     "MyApp.view.main.MainController",
     "MyApp.view.main.MainModel",
     "MyApp.view.main.ListCustomer",
+    "MyApp.view.main.ListSubscriptions",
   ],
 
   controller: "main",
@@ -74,10 +75,30 @@ Ext.define("MyApp.view.main.Main", {
       items: [
         {
           xtype: "mainCustomerlist",
+          flex: 2,
         },
         {
           xtype: "customerForm",
-          reference: "customerForm", // Single form, shared across tabs
+          reference: "customerForm",
+
+          flex: 1,
+          margin: "20 0 0 0",
+        },
+      ],
+    },
+    {
+      title: "Subscriptions",
+      iconCls: "fa-user",
+      items: [
+        {
+          xtype: "mainSubscriptionlist",
+          flex: 2,
+        },
+        {
+          xtype: "subscriptionForm",
+          reference: "subscriptionForm",
+          flex: 1,
+          margin: "20 0 0 0",
         },
       ],
     },

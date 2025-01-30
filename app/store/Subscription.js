@@ -5,6 +5,8 @@ Ext.define("MyApp.store.Subscription", {
 
   model: "MyApp.model.Subscription",
 
+  storeId: "subscription",
+
   data: {
     items: [
       {

@@ -4,6 +4,7 @@ Ext.define("MyApp.store.Customer", {
   alias: "store.customer",
 
   model: "MyApp.model.Customer",
+
   storeId: "customer",
 
   data: {

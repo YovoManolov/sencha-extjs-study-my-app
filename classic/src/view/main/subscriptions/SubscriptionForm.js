@@ -1,8 +1,8 @@
-Ext.define("MyApp.view.CustomerForm", {
+Ext.define("MyApp.view.SubscriptionForm", {
   extend: "Ext.form.Panel",
-  xtype: "customerForm",
+  xtype: "subscriptionForm",
 
-  title: "Add or Edit Customer",
+  title: "Add or Edit Subscription",
   bodyPadding: 10,
   width: 400,
 
@@ -16,45 +16,23 @@ Ext.define("MyApp.view.CustomerForm", {
       allowBlank: false,
     },
     {
-      fieldLabel: "Address",
-      name: "address",
+      fieldLabel: "Price",
+      name: "price",
       allowBlank: false,
     },
     {
-      fieldLabel: "Gender",
-      xtype: "combo",
-      name: "gender",
-      store: ["Male", "Female"],
-      queryMode: "local",
-      editable: false,
+      fieldLabel: "Currency",
+      name: "currency",
       allowBlank: false,
     },
     {
-      fieldLabel: "Age",
-      name: "age",
-      xtype: "numberfield",
-      minValue: 18, // Minimum age
+      fieldLabel: "Subscription",
+      name: "subscription",
       allowBlank: false,
     },
     {
-      fieldLabel: "Customer Product",
-      name: "customerProduct",
-      allowBlank: false,
-    },
-    {
-      fieldLabel: "Subscription Type",
-      name: "customerSubcription",
-      xtype: "combo",
-      store: Ext.create("MyApp.store.Subscription"), // Subscription store
-      displayField: "name", // Display field
-      valueField: "id", // Use the ID as the value
-      queryMode: "local",
-      editable: false,
-      allowBlank: false,
-    },
-    {
-      fieldLabel: "Email or contact number",
-      name: "emailAndContactNumber",
+      fieldLabel: "Validity",
+      name: "validity",
       allowBlank: false,
     },
   ],
@@ -67,49 +45,45 @@ Ext.define("MyApp.view.CustomerForm", {
         var form = this.up("form").getForm();
         if (form.isValid()) {
           var values = form.getValues();
-          var customerStore = Ext.getStore("customer");
-
-          console.log("Adding customer with values:", values); // Debugging the values
+          var subscriptionStore = Ext.getStore("subscription");
 
           if (this.up("form").isEditMode) {
             var currentNameValue = form.findField("name").getValue();
 
             if (this.up("form").originalNameValue !== currentNameValue) {
-              if (customerStore) {
-                customerStore.add(values);
-                Ext.Msg.alert("Success", "Customer added successfully!");
+              if (subscriptionStore) {
+                subscriptionStore.add(values);
+                Ext.Msg.alert("Success", "Subscription added successfully!");
               } else {
-                Ext.Msg.alert("Error", "Customer store is not available.");
+                Ext.Msg.alert("Error", "Subscription store is not available.");
               }
               this.up("form").resetForm();
             } else {
               form.updateRecord();
-              Ext.Msg.alert("Success", "Customer updated successfully!");
+              Ext.Msg.alert("Success", "Subscription updated successfully!");
               this.up("form").resetForm();
               this.up("form").isEditMode = false;
             }
           } else {
-            if (customerStore) {
-              console.log("values to add to customer store:", values);
+            if (subscriptionStore) {
+              console.log("values to add to subscription store:", values);
 
-              customerStore.add(values); // Add new customer
+              subscriptionStore.add(values);
 
-              customerStore.commitChanges(); // Commit the change to store
-              //customerStore.load(); // Load new data into the store
+              subscriptionStore.commitChanges();
 
               console.log("values in customer store after commit:");
-              console.log(customerStore.getData().items);
+              console.log(subscriptionStore.getData().items);
 
-              // Ensure form is reset for the next customer
               Ext.Msg.alert("Success", "Customer added successfully!");
 
-              var newCustomer = customerStore.getAt(
-                customerStore.getCount() - 1
+              var newSubscription = subscriptionStore.getAt(
+                subscriptionStore.getCount() - 1
               );
 
-              this.up("form").loadRecord(newCustomer);
+              this.up("form").loadRecord(newSubscription);
 
-              customerStore.reload();
+              subscriptionStore.reload();
 
               this.up("form").resetForm();
             }
@@ -129,7 +103,7 @@ Ext.define("MyApp.view.CustomerForm", {
   loadRecord: function (record) {
     console.log("from inside loadRecord function");
     this.getForm().loadRecord(record); // Load the existing customer data into the form
-    this.setTitle("Edit Customer");
+    this.setTitle("Edit Subscription");
     this.isEditMode = true;
 
     // Store the original name value for comparison later
@@ -138,7 +112,7 @@ Ext.define("MyApp.view.CustomerForm", {
 
   resetForm: function () {
     this.getForm().reset(); // Reset the form fields
-    this.setTitle("Add or Edit Customer");
+    this.setTitle("Add or Edit Subscription");
     this.isEditMode = false;
     this.originalNameValue = null; // Reset the original name value
 
