@@ -31,13 +31,21 @@ Ext.define("MyApp.view.main.ListCustomer", {
       width: 60,
       items: [
         {
-          iconCls: "x-fa fa-edit", // Add edit icon (Font Awesome or custom icon)
+          iconCls: "x-fa fa-edit",
           tooltip: "Edit Customer",
           handler: function (grid, rowIndex, colIndex) {
             var rec = grid.getStore().getAt(rowIndex); // Get selected record
-            var editPanel = Ext.getCmp("customerForm"); // Get the edit panel by ID
-            if (editPanel) {
-              editPanel.loadRecord(rec); // Load the customer record into the panel
+            console.log("Editing customer:", rec.data);
+
+            // Find the CustomerForm using reference
+            var mainView = grid.up("app-main"); // Adjust this if needed
+            var customerForm = mainView.lookupReference("customerForm");
+
+            if (customerForm) {
+              console.log("Form found, loading record...");
+              customerForm.loadRecord(rec);
+            } else {
+              console.error("CustomerForm not found!");
             }
           },
         },

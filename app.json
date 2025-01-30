@@ -418,7 +418,9 @@
         "resources": {
             "path": "${build.id}/resources",
             "shared": "resources"
-        }
+        },
+        "debug": true,
+        "compress": false
     },
 
     /**
