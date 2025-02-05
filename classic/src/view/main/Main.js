@@ -89,7 +89,7 @@ Ext.define("MyApp.view.main.Main", {
     },
     {
       title: "Subscriptions",
-      iconCls: "fa-user",
+      iconCls: "fa-book",
       items: [
         {
           xtype: "mainSubscriptionlist",
@@ -106,7 +106,7 @@ Ext.define("MyApp.view.main.Main", {
     ,
     {
       title: "Products",
-      iconCls: "fa-user",
+      iconCls: "fa-tablet",
       items: [
         {
           xtype: "mainProductlist",
