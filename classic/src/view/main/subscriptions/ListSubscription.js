@@ -1,7 +1,7 @@
 /**
  * This view is an example list of people.
  */
-Ext.define("MyApp.view.main.ListSubscriptions", {
+Ext.define("MyApp.view.main.ListSubscription", {
   extend: "Ext.grid.Panel",
   xtype: "mainSubscriptionlist",
 
@@ -16,7 +16,7 @@ Ext.define("MyApp.view.main.ListSubscriptions", {
   columns: [
     { text: "Name", dataIndex: "name" },
     { text: "Address", dataIndex: "price", flex: 1 },
-    { text: "Gender", dataIndex: "currency", flex: 1 },
+    { text: "Currency", dataIndex: "currency", flex: 1 },
     { text: "Subscription", dataIndex: "subscription", flex: 1 },
     { text: "Validity", dataIndex: "validity", flex: 1 },
     {

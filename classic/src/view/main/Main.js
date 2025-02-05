@@ -9,7 +9,8 @@ Ext.define("MyApp.view.main.Main", {
     "MyApp.view.main.MainController",
     "MyApp.view.main.MainModel",
     "MyApp.view.main.ListCustomer",
-    "MyApp.view.main.ListSubscriptions",
+    "MyApp.view.main.ListSubscription",
+    "MyApp.view.main.ListProduct",
   ],
 
   controller: "main",
@@ -97,6 +98,23 @@ Ext.define("MyApp.view.main.Main", {
         {
           xtype: "subscriptionForm",
           reference: "subscriptionForm",
+          flex: 1,
+          margin: "20 0 0 0",
+        },
+      ],
+    },
+    ,
+    {
+      title: "Products",
+      iconCls: "fa-user",
+      items: [
+        {
+          xtype: "mainProductlist",
+          flex: 2,
+        },
+        {
+          xtype: "productForm",
+          reference: "productForm",
           flex: 1,
           margin: "20 0 0 0",
         },

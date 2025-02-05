@@ -5,6 +5,8 @@ Ext.define("MyApp.store.Promocode", {
 
   model: "MyApp.model.Promocode",
 
+  storeId: "promocode",
+
   data: {
     items: [
       {

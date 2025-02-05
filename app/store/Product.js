@@ -5,6 +5,8 @@ Ext.define("MyApp.store.Product", {
 
   model: "MyApp.model.Product",
 
+  storeId: "product",
+
   data: {
     items: [
       {
@@ -13,7 +15,6 @@ Ext.define("MyApp.store.Product", {
         currency: "CHF",
         discountApplied: "Yes",
       },
-
       {
         name: "PhoneProduct2",
         price: 1100,
