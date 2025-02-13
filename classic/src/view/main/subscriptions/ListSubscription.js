@@ -5,19 +5,19 @@ Ext.define("MyApp.view.main.ListSubscription", {
   extend: "Ext.grid.Panel",
   xtype: "mainSubscriptionlist",
 
-  requires: ["MyApp.store.Subscription"],
+  requires: ["MyApp.store.SubscriptionStore"],
 
   title: "Subscription",
 
   store: {
-    type: "subscription",
+    type: "subscriptionstore",
   },
 
   columns: [
     { text: "Name", dataIndex: "name" },
-    { text: "Address", dataIndex: "price", flex: 1 },
+    { text: "Price", dataIndex: "price", flex: 1 },
     { text: "Currency", dataIndex: "currency", flex: 1 },
-    { text: "Subscription", dataIndex: "subscription", flex: 1 },
+    { text: "Subscription Type", dataIndex: "subscriptionType", flex: 1 },
     { text: "Validity", dataIndex: "validity", flex: 1 },
     {
       xtype: "actioncolumn",

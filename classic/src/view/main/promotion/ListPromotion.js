@@ -1,34 +1,23 @@
 /**
  * This view is an example list of people.
  */
-Ext.define("MyApp.view.main.ListCustomer", {
+Ext.define("MyApp.view.main.ListPromotion", {
   extend: "Ext.grid.Panel",
-  xtype: "mainCustomerlist",
+  xtype: "mainPromotionlist",
 
-  requires: ["MyApp.store.CustomerStore"],
+  requires: ["MyApp.store.PromotionStore"],
 
-  title: "Customer",
+  title: "Promotion",
 
   store: {
-    type: "customerstore",
+    type: "promotionstore",
   },
 
   columns: [
-    { text: "Name", dataIndex: "name" },
-    { text: "Address", dataIndex: "address", flex: 1 },
-    { text: "Gender", dataIndex: "gender", flex: 1 },
-    { text: "Age", dataIndex: "age", flex: 1 },
-    {
-      text: "Email and Contact Number",
-      dataIndex: "emailContactNumber",
-      flex: 1,
-    },
-    { text: "Customer Product", dataIndex: "product", flex: 1 },
-    {
-      text: "Customer Subscriptions",
-      dataIndex: "customerSubscriptions",
-      flex: 1,
-    },
+    { text: "Promocode", dataIndex: "promocode" },
+    { text: "Discount", dataIndex: "discount", flex: 1 },
+    { text: "Discount Type", dataIndex: "discountType", flex: 1 },
+    { text: "Number Of Vouchers", dataIndex: "numberOfVouchers", flex: 1 },
     {
       xtype: "actioncolumn",
       text: "Edit",
@@ -36,14 +25,14 @@ Ext.define("MyApp.view.main.ListCustomer", {
       items: [
         {
           iconCls: "x-fa fa-edit",
-          tooltip: "Edit Customer",
+          tooltip: "Edit Promotion",
           handler: function (grid, rowIndex, colIndex) {
             var rec = grid.getStore().getAt(rowIndex); // Get selected record
-            console.log("Editing customer:", rec.data);
+            console.log("Editing promocode:", rec.data);
 
             // Find the CustomerForm using reference
             var mainView = grid.up("app-main"); // Adjust this if needed
-            var customerForm = mainView.lookupReference("customerForm");
+            var customerForm = mainView.lookupReference("promotionForm");
 
             if (customerForm) {
               console.log("Form found, loading record...");

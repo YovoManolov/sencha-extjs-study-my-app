@@ -1,8 +1,8 @@
-Ext.define("MyApp.view.SubscriptionForm", {
+Ext.define("MyApp.view.PromotionForm", {
   extend: "Ext.form.Panel",
-  xtype: "subscriptionForm",
+  xtype: "promotionForm",
 
-  title: "Add or Edit Subscription",
+  title: "Add or Edit Promotion",
   bodyPadding: 10,
   width: 400,
 
@@ -11,28 +11,26 @@ Ext.define("MyApp.view.SubscriptionForm", {
   defaultType: "textfield",
   items: [
     {
-      fieldLabel: "Name",
-      name: "name",
+      fieldLabel: "Promocode",
+      name: "promocode",
       allowBlank: false,
     },
     {
-      fieldLabel: "Price",
-      name: "price",
+      fieldLabel: "Discount",
+      name: "discount",
       allowBlank: false,
     },
     {
-      fieldLabel: "Currency",
-      name: "currency",
+      fieldLabel: "Discount",
+      name: "discountType",
       allowBlank: false,
     },
     {
-      fieldLabel: "Subscription",
-      name: "subscription",
-      allowBlank: false,
-    },
-    {
-      fieldLabel: "Validity",
-      name: "validity",
+      fieldLabel: "Number of voucher",
+      xtype: "combo",
+      name: "numberOfVoucher",
+      queryMode: "local",
+      editable: false,
       allowBlank: false,
     },
   ],
@@ -40,50 +38,54 @@ Ext.define("MyApp.view.SubscriptionForm", {
   buttons: [
     {
       text: "Submit",
-      formBind: true, // Only enabled once the form is valid
+      formBind: true,
       handler: function () {
         var form = this.up("form").getForm();
         if (form.isValid()) {
           var values = form.getValues();
-          var subscriptionStore = Ext.getStore("subscription");
+          var promotionStore = Ext.getStore("promotionstore");
+
+          console.log("Adding customer with values:", values);
 
           if (this.up("form").isEditMode) {
             var currentNameValue = form.findField("name").getValue();
 
             if (this.up("form").originalNameValue !== currentNameValue) {
-              if (subscriptionStore) {
-                subscriptionStore.add(values);
-                Ext.Msg.alert("Success", "Subscription added successfully!");
+              if (promotionStore) {
+                promotionStore.add(values);
+                Ext.Msg.alert("Success", "Promotion added successfully!");
               } else {
-                Ext.Msg.alert("Error", "Subscription store is not available.");
+                Ext.Msg.alert("Error", "Promotion store is not available.");
               }
               this.up("form").resetForm();
             } else {
               form.updateRecord();
-              Ext.Msg.alert("Success", "Subscription updated successfully!");
+              Ext.Msg.alert("Success", "Promotion updated successfully!");
               this.up("form").resetForm();
               this.up("form").isEditMode = false;
             }
           } else {
-            if (subscriptionStore) {
-              console.log("values to add to subscription store:", values);
+            if (promotionStore) {
+              console.log("values to add to customer store:", values);
 
-              subscriptionStore.add(values);
+              promotionStore.add(values);
 
-              subscriptionStore.commitChanges();
+              promotionStore.commitChanges(); // Commit the change to store
+              //promotionStore.load(); // Load new data into the store
 
               console.log("values in customer store after commit:");
-              console.log(subscriptionStore.getData().items);
+              console.log(promotionStore.getData().items);
 
-              Ext.Msg.alert("Success", "Subscription added successfully!");
+              // Ensure form is reset for the next customer
+              Ext.Msg.alert("Success", "Promotion added successfully!");
 
-              var newSubscription = subscriptionStore.getAt(
-                subscriptionStore.getCount() - 1
+              var newPromotion = promotionStore.getAt(
+                promotionStore.getCount() - 1
               );
 
-              this.up("form").loadRecord(newSubscription);
+              this.up("form").loadRecord(newPromotion);
 
-              subscriptionStore.reload();
+              promotionStore.reload();
 
               this.up("form").resetForm();
             }
@@ -103,7 +105,7 @@ Ext.define("MyApp.view.SubscriptionForm", {
   loadRecord: function (record) {
     console.log("from inside loadRecord function");
     this.getForm().loadRecord(record); // Load the existing customer data into the form
-    this.setTitle("Edit Subscription");
+    this.setTitle("Edit Promotion");
     this.isEditMode = true;
 
     // Store the original name value for comparison later
@@ -112,7 +114,7 @@ Ext.define("MyApp.view.SubscriptionForm", {
 
   resetForm: function () {
     this.getForm().reset(); // Reset the form fields
-    this.setTitle("Add or Edit Subscription");
+    this.setTitle("Add or Edit Promotion");
     this.isEditMode = false;
     this.originalNameValue = null; // Reset the original name value
 

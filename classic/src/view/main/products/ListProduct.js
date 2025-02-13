@@ -5,12 +5,12 @@ Ext.define("MyApp.view.main.ListProduct", {
   extend: "Ext.grid.Panel",
   xtype: "mainProductlist",
 
-  requires: ["MyApp.store.Subscription"],
+  requires: ["MyApp.store.ProductStore"],
 
   title: "Product",
 
   store: {
-    type: "product",
+    type: "productstore",
   },
 
   columns: [

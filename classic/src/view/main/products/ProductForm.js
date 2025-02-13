@@ -40,7 +40,7 @@ Ext.define("MyApp.view.ProductForm", {
         var form = this.up("form").getForm();
         if (form.isValid()) {
           var values = form.getValues();
-          var productStore = Ext.getStore("product");
+          var productStore = Ext.getStore("productstore");
 
           if (this.up("form").isEditMode) {
             var currentNameValue = form.findField("name").getValue();
@@ -70,7 +70,7 @@ Ext.define("MyApp.view.ProductForm", {
               console.log("values in customer store after commit:");
               console.log(productStore.getData().items);
 
-              Ext.Msg.alert("Success", "Customer added successfully!");
+              Ext.Msg.alert("Success", "Product added successfully!");
 
               var newProduct = productStore.getAt(productStore.getCount() - 1);
 

@@ -103,7 +103,6 @@ Ext.define("MyApp.view.main.Main", {
         },
       ],
     },
-    ,
     {
       title: "Products",
       iconCls: "fa-tablet",
@@ -115,6 +114,22 @@ Ext.define("MyApp.view.main.Main", {
         {
           xtype: "productForm",
           reference: "productForm",
+          flex: 1,
+          margin: "20 0 0 0",
+        },
+      ],
+    },
+    {
+      title: "Promotions",
+      iconCls: "fa-gifts",
+      items: [
+        {
+          xtype: "mainPromotionlist",
+          flex: 2,
+        },
+        {
+          xtype: "promotionForm",
+          reference: "promotionForm",
           flex: 1,
           margin: "20 0 0 0",
         },

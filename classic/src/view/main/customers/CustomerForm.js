@@ -24,7 +24,6 @@ Ext.define("MyApp.view.CustomerForm", {
       fieldLabel: "Gender",
       xtype: "combo",
       name: "gender",
-      store: ["Male", "Female"],
       queryMode: "local",
       editable: false,
       allowBlank: false,
@@ -37,6 +36,11 @@ Ext.define("MyApp.view.CustomerForm", {
       allowBlank: false,
     },
     {
+      fieldLabel: "Email or contact number",
+      name: "emailAndContactNumber",
+      allowBlank: false,
+    },
+    {
       fieldLabel: "Customer Product",
       name: "customerProduct",
       allowBlank: false,
@@ -45,16 +49,11 @@ Ext.define("MyApp.view.CustomerForm", {
       fieldLabel: "Subscription Type",
       name: "customerSubcription",
       xtype: "combo",
-      store: Ext.create("MyApp.store.Subscription"), // Subscription store
+      store: Ext.create("MyApp.store.SubscriptionStore"), // Subscription store
       displayField: "name", // Display field
       valueField: "id", // Use the ID as the value
       queryMode: "local",
       editable: false,
-      allowBlank: false,
-    },
-    {
-      fieldLabel: "Email or contact number",
-      name: "emailAndContactNumber",
       allowBlank: false,
     },
   ],
@@ -67,7 +66,7 @@ Ext.define("MyApp.view.CustomerForm", {
         var form = this.up("form").getForm();
         if (form.isValid()) {
           var values = form.getValues();
-          var customerStore = Ext.getStore("customer");
+          var customerStore = Ext.getStore("customerstore");
 
           console.log("Adding customer with values:", values); // Debugging the values
 
